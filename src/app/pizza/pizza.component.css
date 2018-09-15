@@ -1,0 +1,71 @@
+/*header {
+    background-image: url('../assets/wallpaper.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: black;
+    min-height: 700px;
+    width: 1000px;
+    height: 800px;
+  }
+  header .header-content {
+    position: relative;
+    text-align: center;
+    padding: 200px 150px 100px;
+  }
+  header .header-content .header-content-inner h1 {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 50px;
+  }
+  
+  header .header-content .header-content-inner hr {
+    border-color: black;
+    border-width: 3px;
+    max-width: 50px;
+  }
+  
+  header .header-content .header-content-inner p {
+    color:black;
+    font-size: 24px;
+  }*/
+  
+
+  
+
+  .paral {
+    min-height: 600px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 50%;
+    }
+
+  /* Paragraph for Parallax Section */ 
+.paral p {
+  font-size: 24px;
+  color:#0e0538;
+  text-align: center;
+  line-height: 60px;
+  }
+   
+  /* Heading for Parallax Section */ 
+  .paral h1 {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 60px;
+  text-align: center;
+  padding-top: 60px;
+  line-height: 100px;
+  }
+
+.paralsec {
+   background-image: url('../assets/wallpaper.jpg');
+  }
+   
+  .paralsec1 {
+  background-image: url("https://img.webnots.com/2017/05/parallax1.jpg");}
+   
+  .jumbotron{margin-bottom: 0;}
+  

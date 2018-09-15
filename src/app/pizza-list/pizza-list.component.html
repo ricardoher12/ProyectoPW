@@ -1,0 +1,44 @@
+
+<section [hidden]="true" class="no-padding portfolio">
+	<div class="container-fluid">
+	  <div class="row ">
+		<div class="title col-md-2 col-sm-12">
+		  <div>OBSERVA TUS</div>
+		  <div class="title-color">RECETAS!</div>
+		</div>
+  
+		<div class="title col-md-10 col-sm-12">       
+		  <div class="row no-gutter popup-gallery">
+			<!-- Iteramos por cada elemento en dogs-->
+			<div class="col-lg-4 col-sm-4" *ngFor="let pizza of pizzas"> 
+			  <a class="portfolio-box">
+				<img src="{{pizza.picture}}" class="img-responsive" alt="">
+				<div class="portfolio-box-caption">
+				  <div class="portfolio-box-caption-content">
+					<div class="title">
+					  {{pizza.id}} - {{pizza.nombre}}
+					</div>
+					<div class="description">
+            Tamaño:
+            {{pizza.size}}
+          </div>
+          <div class="description">
+              Forma:
+              {{pizza.forma}}
+            </div>
+            <div class="description" *ngFor="let ingredientes of pizza.ingredientes">
+                {{ingredientes}}
+              </div>
+          <div class="buttons">
+            <button type="button" class="btn btn-warning">Modificar</button>
+            <button type="button" class="btn btn-warning">Eliminar</button>
+          </div>
+        </div>
+        </div>
+			  </a>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
