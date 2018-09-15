@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {PizzaService } from '../pizza.service'
 import {Pizza} from '../pizza'
+import { GlobalProvider } from "../GlobalProvide";
+
 
 @Component({
   selector: 'app-pizza-list',
@@ -9,7 +11,7 @@ import {Pizza} from '../pizza'
 })
 export class PizzaListComponent implements OnInit {
   pizzas: Pizza[];
-  constructor(private pizzaService: PizzaService) { }
+  constructor(private pizzaService: PizzaService, private global: GlobalProvider) { }
 
   ngOnInit() {
     this.getPizzas();

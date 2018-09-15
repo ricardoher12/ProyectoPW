@@ -5,4 +5,11 @@ export class GlobalProvider {
 
   public myGlobalVar: boolean;
 
-}
+
+    constructor() { }
+
+    ngOnInit() {
+      this.myGlobalVar = true;
+    }
+  }
+  

@@ -7,6 +7,7 @@ import { PizzaComponent } from './pizza/pizza.component';
 import { SeparatorComponent } from './separator/separator.component';
 import { UiModule } from './ui/ui.module';
 import { PizzaListComponent } from './pizza-list/pizza-list.component';
+import {GlobalProvider} from './GlobalProvide';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { PizzaListComponent } from './pizza-list/pizza-list.component';
     AngularFontAwesomeModule,
     UiModule
   ],
-  providers: [],
+  providers: [GlobalProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

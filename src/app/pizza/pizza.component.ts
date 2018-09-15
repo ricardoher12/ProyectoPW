@@ -7,11 +7,15 @@ import { GlobalProvider } from "../GlobalProvide";
   styleUrls: ['./pizza.component.css']
 })
 export class PizzaComponent implements OnInit {
-  
-  constructor(public global: GlobalProvider) { this.global.myGlobalVar = false;}
+ 
+   
+  constructor(private global: GlobalProvider) { 
+    this.global.myGlobalVar = true;
+  }
 
   ngOnInit() {
-
+    
+    
   }
 
 }
