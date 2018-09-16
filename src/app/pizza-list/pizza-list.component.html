@@ -1,4 +1,12 @@
 
+<div *ngIf="global.myGlobalVar" class="jumbotron paral paralsec">
+	<h1 class="display-3">Pizza Maker</h1>
+	<p class="lead">Deja volar tu imaginación y crea las mejores recetas de pizzas</p>
+	<p class="lead">
+	<a class="btn btn-info btn-lg btn-md"  type="button" (click)="CrearReceta()" >Crear nueva receta</a>
+	</p>
+</div>
+<app-separator></app-separator>
 <section *ngIf="global.myGlobalVar" class="no-padding portfolio">
 	<div class="container-fluid">
 	  <div class="row ">
@@ -26,12 +34,12 @@
               Forma:
               {{pizza.forma}}
             </div>
-            <div class="description" *ngFor="let ingredientes of pizza.ingredientes">
-                {{ingredientes}}
+            <div class="description" >
+                {{pizza.ingredientes}}
               </div>
           <div class="buttons">
-            <button type="button" class="btn btn-warning">Modificar</button>
-            <button type="button" class="btn btn-warning">Eliminar</button>
+            <button mat-raised-button (click)="MostrarEdit(pizza)" type="button" class="btn btn-warning">Modificar</button>
+            <button type="button" (click)="openPromptModal()" class="btn btn-warning">Eliminar</button>
           </div>
         </div>
         </div>
@@ -41,4 +49,5 @@
 		</div>
 	  </div>
 	</div>
-  </section>
+	</section>
+	<app-pizza-form [model]="global.pizza" [flag]="global.flag"></app-pizza-form>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+ import { GlobalProvider } from "../../GlobalProvide";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private global: GlobalProvider) { }
 
   ngOnInit() {
+  }
+
+  MostarHome():void{
+    this.global.myGlobalVar = true;
+    this.global.verForm = false;
+  }
+
+  MostarForm():void{
+    this.global.myGlobalVar = false;
+    this.global.verForm = true;
   }
 
 }

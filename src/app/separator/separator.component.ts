@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalProvider } from "../GlobalProvide";
 
 @Component({
   selector: 'app-separator',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeparatorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private global: GlobalProvider) { }
 
   ngOnInit() {
   }

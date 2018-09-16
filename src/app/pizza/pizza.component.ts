@@ -11,6 +11,7 @@ export class PizzaComponent implements OnInit {
    
   constructor(private global: GlobalProvider) { 
     this.global.myGlobalVar = true;
+    this.global.verForm = false;
   }
 
   ngOnInit() {
@@ -18,4 +19,9 @@ export class PizzaComponent implements OnInit {
     
   }
 
+  
+
+
 }
+
+
