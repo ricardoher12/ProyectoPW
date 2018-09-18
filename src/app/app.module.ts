@@ -11,13 +11,28 @@ import { PizzaFormComponent } from './pizza-form/pizza-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { RouterModule, Routes } from '@angular/router';
+import { PizzaComponent } from './pizza/pizza.component';
+import { Pizza } from './pizza';
+
+
+
+const rutas: Routes = [
+{path: "home", component: PizzaComponent },
+{path: "catalogo", component: PizzaListComponent},
+{path: "modificar/:pizza", component: PizzaFormComponent},
+{ path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     SeparatorComponent,
     PizzaListComponent,
-    PizzaFormComponent
+    PizzaFormComponent,
+    PizzaComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +40,8 @@ import { RouterModule, Routes } from '@angular/router';
     UiModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalDialogModule.forRoot()
+    ModalDialogModule.forRoot(),
+    RouterModule.forRoot(rutas)
   ],
   providers: [GlobalProvider],
   bootstrap: [AppComponent]

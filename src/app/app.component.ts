@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import {Pizza} from './pizza';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ProyectoFront';
+  PizzaInit = new Pizza("", "", "", "", "", "");
 }

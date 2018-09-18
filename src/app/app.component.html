@@ -17,7 +17,29 @@
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
 </ul-->
-<app-layout>
-<app-pizza-list></app-pizza-list>
-</app-layout>
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" routerLink="home" >Pizza Maker</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" routerLinkActive="active" routerLink="home">Home</a>
+      <a class="nav-item nav-link" routerLink="catalogo">Catologo</a>
+      <a class="nav-item nav-link" [routerLink]="['../modificar/', PizzaInit.nombre]">Crear Receta</a>
+    </div>
+  </div>
+  <!--div class="navbar-expand ml-auto navbar-nav">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+      <a class="nav-item nav-link" href="https://twitter.com/beeman_nl" target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a class="nav-item nav-link" href="https://medium.com/@beeman" target="_blank">
+        <i class="fa fa-medium"></i>
+      </a>
+    </div>
+  </div-->
+</nav>
+<router-outlet></router-outlet>
+
 
