@@ -13,7 +13,7 @@ export class PizzaService {
 
   getPizzaList(): Pizza[] {
     let listPiz: Pizza[]= JSON.parse(localStorage.getItem("pizzas").toString());
-  return PIZZAS;
+  return listPiz;
   }
 
   get2Pizzas(): Pizza[]
