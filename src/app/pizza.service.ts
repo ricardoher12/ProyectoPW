@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs'
 import {Pizza} from './pizza'
 import {PIZZAS} from './mock-pizzas'
 import { GlobalProvider} from './GlobalProvide';
+import {PIZZAS2} from './mock-pizzas2'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,17 @@ import { GlobalProvider} from './GlobalProvide';
 export class PizzaService {
 
   getPizzaList(): Pizza[] {
-    return PIZZAS;
+    let listPiz: Pizza[]= JSON.parse(localStorage.getItem("pizzas").toString());
+  return PIZZAS;
+  }
+
+  get2Pizzas(): Pizza[]
+  {
+    return PIZZAS2;
+  }
+
+  grabar_localmente() :void {
+    localStorage.setItem("pizzas", JSON.stringify(PIZZAS));
   }
 
   public igualarPizzas(): Pizza

@@ -20,9 +20,16 @@ export class PizzaListComponent implements OnInit {
     this.global.verForm = false; }
 
   ngOnInit() {
+    this.pizzaService.grabar_localmente();
     this.getPizzas();
   }
-  getPizzas(): void {
+  
+getPizzas2(): void{
+  this.pizzas = this.pizzaService.get2Pizzas();
+}
+
+
+   getPizzas(): void {
     this.pizzas = this.pizzaService.getPizzaList();
   }
 
@@ -41,7 +48,7 @@ export class PizzaListComponent implements OnInit {
   }
 
 
-  openPromptModal() {
+  openPromptModal(pizza: Pizza) {
     this.modalDialogService.openDialog(this.viewContainer, {
       title: 'Confirmación de Eliminacion',
       childComponent: SimpleModalComponent,

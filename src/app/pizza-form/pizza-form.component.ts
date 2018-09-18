@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {Pizza} from '../pizza'
 import { GlobalProvider } from "../GlobalProvide";
-import {PizzaService} from '../pizza.service'
+import { PizzaListComponent } from '../pizza-list/pizza-list.component';
 
 @Component({
   selector: 'app-pizza-form',
@@ -15,11 +15,17 @@ export class PizzaFormComponent implements OnInit {
   model1 = new  Pizza("1", "1", "", "Redonda", "Familiar", "salfa, ancohas");
   sizes = ['Familiar', 'Grande', 'Mediana', 'Pequeña', 'Personal'];
   formas = ["Redonda", "Cuadrada", "Rectangular"]
-constructor(private global: GlobalProvider){};
+constructor(private global: GlobalProvider, private list: PizzaListComponent ){};
 
 MostrarInfo(){
   this.global.myGlobalVar = true;
   this.global.verForm = false;
+ // this.list.getPizzas2();
+}
+
+
+submit(){
+  
 }
 
   ngOnInit() {
