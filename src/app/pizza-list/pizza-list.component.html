@@ -1,7 +1,7 @@
 
 
 <app-separator></app-separator>
-<section *ngIf="global.myGlobalVar" class="no-padding portfolio">
+<section  class="no-padding portfolio">
 	<div class="container-fluid">
 	  <div class="row ">
 		<div class="title col-md-2 col-sm-12">
@@ -32,7 +32,7 @@
                 {{pizza.ingredientes}}
               </div>
           <div class="buttons">
-            <button mat-raised-button [routerLink]="['../modificar/', pizza.id]" type="button" class="btn btn-warning">Modificar</button>
+            <button mat-raised-button (click)="Modificar(pizza)" type="button" class="btn btn-warning">Modificar</button>
             <button type="button" (click)="openPromptModal(pizza)" class="btn btn-warning">Eliminar</button>
           </div>
         </div>

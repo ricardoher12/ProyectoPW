@@ -10,6 +10,13 @@ import {PIZZAS2} from './mock-pizzas2'
   providedIn: 'root'
 })
 export class PizzaService {
+pizzaModel: Pizza;
+
+
+igualarPizzas(pizza: Pizza)
+{
+  this.pizzaModel = pizza;
+}
 
   getPizzaList(): Pizza[] {
     let listPiz: Pizza[]= JSON.parse(localStorage.getItem("pizzas").toString());
@@ -25,9 +32,9 @@ export class PizzaService {
     localStorage.setItem("pizzas", JSON.stringify(PIZZAS));
   }
 
-  public igualarPizzas(): Pizza
+  /*public igualarPizzas(): Pizza
   {
-    return this.global.pizza;
-  }
-  constructor(private global:GlobalProvider) { }
+    //return this.global.pizza;
+  }*/
+  constructor() { }
 }

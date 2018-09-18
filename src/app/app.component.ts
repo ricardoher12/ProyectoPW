@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Pizza} from './pizza';
+import {PizzaService} from './pizza.service'
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,9 @@ import {Pizza} from './pizza';
 export class AppComponent {
   title = 'ProyectoFront';
   PizzaInit = new Pizza("", "", "", "", "", "");
+  
+  crear() :void{
+    let service = new PizzaService();
+    service.igualarPizzas(new Pizza("", "", "", "Redonda", "Grande", ""));
+  }
 }

@@ -19,8 +19,8 @@ import { Pizza } from './pizza';
 const rutas: Routes = [
 {path: "home", component: PizzaComponent },
 {path: "catalogo", component: PizzaListComponent},
-{path: "modificar/:pizza", component: PizzaFormComponent},
-{path: "crear/:pizza", component: PizzaFormComponent},
+{path: "modificar", component: PizzaFormComponent},
+{path: "crear", component: PizzaFormComponent},
 { path: '',
     redirectTo: '/home',
     pathMatch: 'full'

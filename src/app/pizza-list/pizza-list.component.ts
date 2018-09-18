@@ -16,8 +16,9 @@ export class PizzaListComponent implements OnInit {
   pizzas: Pizza[];
   
 
-  constructor(private pizzaService: PizzaService, private global: GlobalProvider, private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef, private router: Router) {this.global.myGlobalVar = true;
-    this.global.verForm = false; }
+  constructor(private pizzaService: PizzaService, private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef, private router: Router) 
+  {
+     }
 
   ngOnInit() {
     this.pizzaService.grabar_localmente();
@@ -33,7 +34,7 @@ getPizzas2(): void{
     this.pizzas = this.pizzaService.getPizzaList();
   }
 
-  MostrarEdit(pizza: Pizza){
+ /* MostrarEdit(pizza: Pizza){
     this.global.myGlobalVar = false;
     this.global.verForm = true;
     this.global.pizza = pizza;
@@ -45,11 +46,12 @@ getPizzas2(): void{
     this.global.verForm = true;
     this.global.pizza = new Pizza("", "", "", "", "", "");
     this.global.myGlobalVar =false;
-  }
+  }*/
 
-  Modificar()
+  Modificar(pizza: Pizza)
   {
-    this.router.navigateByUrl('/modificar');
+    this.pizzaService.igualarPizzas(pizza);
+    this.router.navigate([('../modificar')]);
   }
   
   openEditModal(pizza: Pizza) {
