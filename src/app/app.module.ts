@@ -13,13 +13,17 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
 import { RouterModule, Routes } from '@angular/router';
 import { PizzaComponent } from './pizza/pizza.component';
 import { Pizza } from './pizza';
+import { FormalModalComponent } from './formal-modal/formal-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PizzaFormModComponent } from './pizza-form-mod/pizza-form-mod.component';
+
 
 
 
 const rutas: Routes = [
 {path: "home", component: PizzaComponent },
 {path: "catalogo", component: PizzaListComponent},
-{path: "modificar", component: PizzaFormComponent},
+{path: "modificar", component: PizzaFormModComponent},
 {path: "crear", component: PizzaFormComponent},
 { path: '',
     redirectTo: '/home',
@@ -33,7 +37,9 @@ const rutas: Routes = [
     SeparatorComponent,
     PizzaListComponent,
     PizzaFormComponent,
-    PizzaComponent
+    PizzaComponent,
+    FormalModalComponent,
+    PizzaFormModComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,11 @@ const rutas: Routes = [
     FormsModule,
     ReactiveFormsModule,
     ModalDialogModule.forRoot(),
-    RouterModule.forRoot(rutas)
+    RouterModule.forRoot(rutas),
+    NgbModule.forRoot()
+  ],
+  entryComponents: [
+    FormalModalComponent
   ],
   providers: [GlobalProvider],
   bootstrap: [AppComponent]

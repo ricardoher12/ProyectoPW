@@ -1,11 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {Pizza} from '../pizza'
-import { GlobalProvider } from "../GlobalProvide";
-import { PizzaListComponent } from '../pizza-list/pizza-list.component';
-import { ActivatedRoute, Params } from '@angular/router';
 import { PizzaService } from '../pizza.service';
 import { isUndefined } from 'util';
-import { PIZZAS } from '../mock-pizzas';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-pizza-form',
@@ -22,19 +20,6 @@ export class PizzaFormComponent implements OnInit {
   bloquearID: boolean;
 
 constructor(private pizzaService: PizzaService){
- if(isUndefined(this.pizzaService.pizzaModel))
- {
-  this.model = new Pizza("", "", "", "Redonda", "Grande", "");
- }else{
-  this.model = this.pizzaService.pizzaModel;
-  if(this.model.id != ""){
-    this.bloquearID = false;
-  }else
-  {
-    this.bloquearID = true;
-  }
- }
-  
 };
 
 /*MostrarInfo(){
@@ -50,10 +35,12 @@ submit(){
 
   ngOnInit() {
     //this.getPizzas();
-    
+   this.model = new Pizza("", "", "", "Redonda", "Grande", ""); 
 
   }
 
+
+  
   
     /*getPizzas(): void {
       this.model = this.pizzaService.igualarPizzas();

@@ -4,7 +4,8 @@ import {Pizza} from '../pizza'
 import { GlobalProvider } from "../GlobalProvide";
 import { ModalDialogService, SimpleModalComponent, IModalDialog, IModalDialogButton, IModalDialogOptions } from 'ngx-modal-dialog';
 import { Router } from "@angular/router";
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormalModalComponent } from '../formal-modal/formal-modal.component';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class PizzaListComponent implements OnInit {
   pizzas: Pizza[];
   
 
-  constructor(private pizzaService: PizzaService, private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef, private router: Router) 
+  constructor(private pizzaService: PizzaService, private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef, private router: Router, private modalService: NgbModal) 
   {
      }
 
@@ -119,6 +120,17 @@ getPizzas2(): void{
           })
         }
       ]
+    });
+  }
+
+  openFormModal(pizza: Pizza) {
+    this.pizzaService.pizzaModel = pizza;
+    const modalRef = this.modalService.open(FormalModalComponent);
+    
+    modalRef.result.then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
     });
   }
 

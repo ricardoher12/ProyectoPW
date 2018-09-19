@@ -6,7 +6,7 @@
   <div class="form-group">
       <label for="id">ID</label>
       <input type="text" class="form-control" id="id" required [(ngModel)]="model.id" name="id"
-      #name="ngModel"  >
+      #name="ngModel" [disabled]="!bloquearID" >
       <!---->
     </div>
 
@@ -39,8 +39,9 @@
         #name="ngModel">
       </div>
 
-    <button type="submit" (click)="MostrarInfo()" class="btn btn-success">Submit</button>
-    
-
+    <div class="container">
+    <button type="submit" (click)="MostrarInfo()" class="btn btn-success">Submit<span class="caret"></span></button>
+    <button type="button" (click)="regresar()" class="btn btn-primary">Cancelar</button>
+  </div>
   </form>
 </div>
