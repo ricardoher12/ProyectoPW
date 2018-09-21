@@ -30,7 +30,7 @@ constructor(private pizzaService: PizzaService){
 
 
 submit(){
-  
+  alert("si entre jeje");
 }
 
   ngOnInit() {

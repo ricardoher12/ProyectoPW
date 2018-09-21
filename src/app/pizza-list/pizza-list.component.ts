@@ -113,15 +113,18 @@ getPizzas2(): void{
         {
           text: 'Eliminar',
           buttonClass: 'btn btn-danger',
-          onAction: () => new Promise((resolve: any, reject: any) => {
-            setTimeout(() => {
-              resolve();
-            }, 20);
-          })
+          onAction: () =>  { 
+            this.borrarPizza(pizza.id);
+          }
         }
       ]
     });
   }
+
+borrarPizza(id: string){
+alert(id);
+
+}
 
   openFormModal(pizza: Pizza) {
     this.pizzaService.pizzaModel = pizza;
