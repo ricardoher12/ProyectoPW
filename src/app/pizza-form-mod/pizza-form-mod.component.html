@@ -1,47 +1,41 @@
 
 <div class="container" >
   <h1>Pizza Form</h1>
-  <form > 
+  <form [formGroup]="form"> 
 
   <div class="form-group">
       <label for="id">ID</label>
-      <input type="text" class="form-control" id="id" required [(ngModel)]="model.id" name="id"
-      #name="ngModel" [disabled]="!bloquearID" >
+      <input type="text"  class="form-control col-sm-1" formControlName="id" name="id" type="text" >
       <!---->
     </div>
 
     <div class="form-group">
       <label for="nombre">Nombre</label>
-      <input type="text" class="form-control" id="nombre" required [(ngModel)]="model.nombre" name="nombre"
-      #name="ngModel">
+      <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
     </div>
     
 
     <div class="form-group">
       <label for="size">Tamaño</label>
-      <select class="form-control" id="size" required required [(ngModel)]="model.size" name="size"
-      #size="ngModel">
+      <select class="form-control" id="size" name="size" formControlName="size">
         <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="forma">Forma</label>
-      <select class="form-control" id="forma" required required required [(ngModel)]="model.forma" name="forma"
-      #forma="ngModel">
+      <select class="form-control" id="forma" name="forma" formControlName="forma">
         <option *ngFor="let forma of formas" [value]="forma">{{forma}}</option>
       </select>
     </div>
 
     <div class="form-group">
         <label for="ingredientes">Receta</label>
-        <input type="text" class="form-control" id="ingredientes" required [(ngModel)]="model.ingredientes" name="ingredientes"
-        #name="ngModel">
+        <input type="text" class="form-control" id="ingredientes" name="ingredientes" formControlName="ingredientes">
       </div>
 
-    
-    <button type="submit" (click)="submit()" class="btn btn-success  mr-2">Submit<span class="caret"></span></button>
-    <button type="button" (click)="regresar()" class="btn btn-primary">Cancelar</button>
-  
+    <button type="submit" (click)="submit()" [disabled]="form.invalid" class="btn btn-success mx-2">Submit</button>
+    <button type="button" (click)="regresar()"  class="btn btn-danger">Cancelar</button>
+
   </form>
 </div>

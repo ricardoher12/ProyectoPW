@@ -1,9 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Pizza} from '../pizza'
 import { PizzaService } from '../pizza.service';
-import { isUndefined } from 'util';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-pizza-form',
@@ -18,8 +17,8 @@ export class PizzaFormComponent implements OnInit {
   sizes = ['Familiar', 'Grande', 'Mediana', 'Pequeña', 'Personal'];
   formas = ["Redonda", "Cuadrada", "Rectangular"];
   bloquearID: boolean;
-
-constructor(private pizzaService: PizzaService){
+  form: FormGroup;
+constructor(private pizzaService: PizzaService, private formBuilder: FormBuilder, private router: Router){
 };
 
 /*MostrarInfo(){
@@ -27,16 +26,55 @@ constructor(private pizzaService: PizzaService){
   this.global.verForm = false;
  // this.list.getPizzas2();
 }*/
-
+ getFullName(item, index) {
+  return item.value;
+}
 
 submit(){
-  this.pizzaService.crear(this.model);
+  
+  this.model.id = this.form.controls["id"].value;
+  this.model.forma = this.form.controls["forma"].value;
+  this.model.nombre = this.form.controls["nombre"].value;
+  this.model.size = this.form.controls["size"].value;
+  this.model.ingredientes = this.form.controls["ingredientes"].value;
+  if(!this.pizzaService.crear(this.model))
+  {
+    alert("El id ingresado ya existe");
+  }else{
+    this.router.navigate([('../catalogo')]);
+  }
+}
+
+regresar(){
+  this.router.navigate([('../home')]);
 }
 
   ngOnInit() {
     //this.getPizzas();
-   this.model = new Pizza("", "", "", "Redonda", "Grande", ""); 
+    this.form = this.formBuilder.group({
+      nombre: [
+        '', 
+        [ Validators.required, Validators.maxLength(20) ]
+      ],
+      id: [
+        '',
+      [Validators.required, Validators.maxLength(3), Validators.pattern("[0-9]*"), Validators.minLength(1) ] 
+      ],
+      ingredientes: [
+        '', 
+        [ Validators.required, Validators.minLength(1), Validators.maxLength(90) ]
+      ],
+      forma: [
+        'Redonda',
+        Validators.required
 
+      ],
+      size:[
+        'Grande',
+        Validators.required
+      ]
+    });
+    this.model = new Pizza("", "", "", "", "", "");
   }
 
 

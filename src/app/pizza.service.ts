@@ -24,7 +24,7 @@ igualarPizzas(pizza: Pizza)
       this.pizzaList = JSON.parse(localStorage.getItem("pizzas").toString());
       return this.pizzaList;
     } catch (error) {
-      return PIZZAS;
+      return this.pizzaList;
     }
     
   }
@@ -44,9 +44,22 @@ igualarPizzas(pizza: Pizza)
     //return this.global.pizza;
   }*/
 
-  crear(pizza: Pizza){
-    this.pizzaList.push(pizza);
-    localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
+  crear(pizza: Pizza): boolean{
+    if(this.pizzaList.length == 0){
+      this.pizzaList.push(pizza);
+      localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
+      return true;
+    }else{
+      for(let pizz of this.pizzaList){
+        if(pizz.id == pizza.id){
+          return false;
+        }
+      }
+      this.pizzaList.push(pizza);
+      localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
+      return true;
+    }
+    
   }
 
   modificar(pizza: Pizza){
