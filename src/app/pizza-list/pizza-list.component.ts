@@ -22,7 +22,6 @@ export class PizzaListComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.pizzaService.grabar_localmente();
     this.getPizzas();
   }
   

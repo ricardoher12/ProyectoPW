@@ -21,4 +21,9 @@ export class PizzaFormModComponent implements OnInit {
     this.router.navigate([('../catalogo')]);
   }
 
+  submit()
+  {
+    this.pizzaService.modificar(this.model);
+  }
+
 }

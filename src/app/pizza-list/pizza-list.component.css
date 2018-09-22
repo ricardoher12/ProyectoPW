@@ -36,6 +36,7 @@
   .portfolio-box .portfolio-box-caption .description{
     color: #ededed;
     font-size: 14px;
+    word-wrap: break-word;
   }
 
   .portfolio-box .portfolio-box-caption .buttons{

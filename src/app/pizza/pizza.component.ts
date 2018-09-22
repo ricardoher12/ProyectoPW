@@ -13,6 +13,7 @@ export class PizzaComponent implements OnInit {
   constructor(private pizzaService: PizzaService, private router: Router) { }
 
   ngOnInit() {
+    //this.pizzaService.grabar_localmente();
   }
 
   Crear(): void{
