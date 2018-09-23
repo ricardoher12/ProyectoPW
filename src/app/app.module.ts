@@ -23,7 +23,7 @@ import { PizzaFormModComponent } from './pizza-form-mod/pizza-form-mod.component
 const rutas: Routes = [
 {path: "home", component: PizzaComponent },
 {path: "catalogo", component: PizzaListComponent},
-{path: "modificar", component: PizzaFormModComponent},
+{path: "modificar", component: PizzaFormComponent},
 {path: "crear", component: PizzaFormComponent},
 { path: '',
     redirectTo: '/home',

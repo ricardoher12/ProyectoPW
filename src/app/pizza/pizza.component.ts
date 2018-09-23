@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 export class PizzaComponent implements OnInit {
   
-  constructor(private pizzaService: PizzaService, private router: Router) { }
+  constructor(private pizzaService: PizzaService, private router: Router) { this.pizzaService.modificarFlag = false; }
 
   ngOnInit() {
     //this.pizzaService.grabar_localmente();

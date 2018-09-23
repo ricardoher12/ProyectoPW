@@ -14,25 +14,27 @@ import { FormalModalComponent } from '../formal-modal/formal-modal.component';
   styleUrls: ['./pizza-list.component.css']
 })
 export class PizzaListComponent implements OnInit {
-  pizzas: Pizza[];
-  
+  pizzas:{ [id:string] : Pizza} = {};
+  keys : string[] = [];
 
   constructor(private pizzaService: PizzaService, private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef, private router: Router, private modalService: NgbModal) 
   {
+    this.pizzaService.modificarFlag = false;
      }
 
   ngOnInit() {
-
+    this.pizzaService.modificarFlag = false;
     this.getPizzas();
   }
   
 getPizzas2(): void{
-  this.pizzas = this.pizzaService.get2Pizzas();
+  //this.pizzas = this.pizzaService.get2Pizzas();
 }
 
 
    getPizzas(): void {
     this.pizzas = this.pizzaService.getPizzaList();
+    this.keys = Object.keys(this.pizzas);
   }
 
  /* MostrarEdit(pizza: Pizza){
@@ -52,6 +54,7 @@ getPizzas2(): void{
   Modificar(pizza: Pizza)
   {
     this.pizzaService.igualarPizzas(pizza);
+    this.pizzaService.modificarFlag = true;
     this.router.navigate([('../modificar')]);
   }
   
@@ -115,7 +118,7 @@ getPizzas2(): void{
           buttonClass: 'btn btn-danger',
           onAction: () => new Promise((resolve: any) => {
             setTimeout(() => {
-              resolve(this.pizzaService.eliminar(pizza));
+              resolve(this.pizzaService.eliminar(pizza), this.getPizzas());
             }, 20);
           })
         }
