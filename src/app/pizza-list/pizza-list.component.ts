@@ -22,6 +22,7 @@ export class PizzaListComponent implements OnInit {
      }
 
   ngOnInit() {
+
     this.getPizzas();
   }
   
@@ -112,9 +113,11 @@ getPizzas2(): void{
         {
           text: 'Eliminar',
           buttonClass: 'btn btn-danger',
-          onAction: () =>  { 
-            this.borrarPizza(pizza.id);
-          }
+          onAction: () => new Promise((resolve: any) => {
+            setTimeout(() => {
+              resolve(this.pizzaService.eliminar(pizza));
+            }, 20);
+          })
         }
       ]
     });

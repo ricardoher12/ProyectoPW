@@ -3,7 +3,8 @@ import {Pizza} from '../pizza'
 import { PizzaService } from '../pizza.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { DISABLED } from '@angular/forms/src/model';
+import { isUndefined } from 'util';
+
 
 @Component({
   selector: 'app-pizza-form-mod',
@@ -19,6 +20,10 @@ export class PizzaFormModComponent implements OnInit {
   constructor(private pizzaService: PizzaService, private router: Router,  private formBuilder: FormBuilder) { this.model = this.pizzaService.pizzaModel}
 
   ngOnInit() {
+    if(this.model.id == ""){
+      this.router.navigate([('../catalogo')]);
+    }
+
     this.form = this.formBuilder.group({
       nombre: [
         this.model.nombre,

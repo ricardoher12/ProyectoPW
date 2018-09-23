@@ -62,6 +62,23 @@ igualarPizzas(pizza: Pizza)
     
   }
 
+
+  eliminar(pizza: Pizza): boolean
+  {
+    for (let index = 0; index < this.pizzaList.length; index++) {
+      const element = this.pizzaList[index];
+
+      if(element.id == pizza.id)
+      {
+        this.pizzaList.splice(index, 1);
+        localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
+        break;
+      }
+      
+    }
+    return true;
+  }
+
   modificar(pizza: Pizza){
     this.pizzaList = JSON.parse(localStorage.getItem("pizzas").toString());
     for(let pizz of this.pizzaList){
