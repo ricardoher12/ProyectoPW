@@ -48,6 +48,7 @@ igualarPizzas(pizza: Pizza)
 
   crear(pizza: Pizza): boolean{
     try {
+     this.pizzaList = this.getPizzaList();
       let existe = this.pizzaList[pizza.id];
       if(isUndefined(existe)){
         this.pizzaList[pizza.id] = pizza;

@@ -53,14 +53,14 @@
     /* Paragraph for Parallax Section */ 
   .paral p {
     font-size: 24px;
-    color:#0e0538;
+    color:black;;
     text-align: center;
     line-height: 60px;
     }
      
     /* Heading for Parallax Section */ 
     .paral h1 {
-    color: rgba(255, 255, 255, 0.8);
+    color:black;
     font-size: 60px;
     text-align: center;
     padding-top: 60px;

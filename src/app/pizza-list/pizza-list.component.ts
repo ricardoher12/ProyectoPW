@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentRef  } from '@angular/core';
 import {PizzaService } from '../pizza.service'
 import {Pizza} from '../pizza'
-import { GlobalProvider } from "../GlobalProvide";
-import { ModalDialogService, SimpleModalComponent, IModalDialog, IModalDialogButton, IModalDialogOptions } from 'ngx-modal-dialog';
+import { ModalDialogService, SimpleModalComponent} from 'ngx-modal-dialog';
 import { Router } from "@angular/router";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormalModalComponent } from '../formal-modal/formal-modal.component';
@@ -105,20 +104,20 @@ getPizzas2(): void{
       },
       actionButtons: [
         {
-          text: 'Cerrar',
-          buttonClass: 'btn btn-success',
-          onAction: () => new Promise((resolve: any) => {
-            setTimeout(() => {
-              resolve();
-            }, 20);
-          })
-        },
-        {
           text: 'Eliminar',
           buttonClass: 'btn btn-danger',
           onAction: () => new Promise((resolve: any) => {
             setTimeout(() => {
               resolve(this.pizzaService.eliminar(pizza), this.getPizzas());
+            }, 20);
+          })
+        },
+        {
+          text: 'Cerrar',
+          buttonClass: 'btn btn-primary',
+          onAction: () => new Promise((resolve: any) => {
+            setTimeout(() => {
+              resolve();
             }, 20);
           })
         }

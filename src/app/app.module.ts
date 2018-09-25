@@ -12,10 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { RouterModule, Routes } from '@angular/router';
 import { PizzaComponent } from './pizza/pizza.component';
-import { Pizza } from './pizza';
 import { FormalModalComponent } from './formal-modal/formal-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PizzaFormModComponent } from './pizza-form-mod/pizza-form-mod.component';
+
 
 
 
@@ -38,8 +37,7 @@ const rutas: Routes = [
     PizzaListComponent,
     PizzaFormComponent,
     PizzaComponent,
-    FormalModalComponent,
-    PizzaFormModComponent
+    FormalModalComponent
   ],
   imports: [
     BrowserModule,
