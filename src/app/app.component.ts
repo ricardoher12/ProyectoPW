@@ -9,10 +9,10 @@ import {PizzaService} from './pizza.service'
 })
 export class AppComponent {
   title = 'ProyectoFront';
-  PizzaInit = new Pizza("", "", "", "", "", "");
+  PizzaInit = new Pizza("", "", "", "", "", "", "");
   
   crear() :void{
     let service = new PizzaService();
-    service.igualarPizzas(new Pizza("", "", "", "Redonda", "Grande", ""));
+    service.igualarPizzas(new Pizza("", "", "", "Redonda", "Grande", "", "Si"));
   }
 }

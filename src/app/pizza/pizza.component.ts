@@ -17,7 +17,7 @@ export class PizzaComponent implements OnInit {
   }
 
   Crear(): void{
-    let pizza = new Pizza("", "", "", "Redonda", "Grande", "");
+    let pizza = new Pizza("", "", "", "Redonda", "Grande", "", "Si");
     this.pizzaService.igualarPizzas(pizza);
     this.router.navigate([('../crear')]);
   }

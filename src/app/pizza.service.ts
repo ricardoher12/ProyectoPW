@@ -11,7 +11,7 @@ import { isUndefined } from 'util';
   providedIn: 'root'
 })
 export class PizzaService {
-pizzaModel = new Pizza("", "", "", "Redonda", "Grande", "" );
+pizzaModel = new Pizza("", "", "", "Redonda", "Grande", "", "Si" );
 pizzaList: { [id:string] : Pizza} = {};
 flag = "";
 modificarFlag : boolean = false;
@@ -48,15 +48,16 @@ igualarPizzas(pizza: Pizza)
 
   crear(pizza: Pizza): boolean{
     try {
-     this.pizzaList = this.getPizzaList();
-      let existe = this.pizzaList[pizza.id];
-      if(isUndefined(existe)){
+     /*this.pizzaList = this.getPizzaList();
+      let existe = this.pizzaList[pizza.id];*/
+      //if(isUndefined(existe)){
+        pizza.id = this.newGuid();
         this.pizzaList[pizza.id] = pizza;
         localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
         return true;
-      }else{
-        return false;
-      }
+      //}else{
+        //return false;
+      //}
       
     } catch (error) {
      return false; 
@@ -71,10 +72,23 @@ igualarPizzas(pizza: Pizza)
     return true;
   }
 
-  modificar(pizza: Pizza){
-    this.pizzaList[pizza.id] = pizza;
+  modificar(pizza: Pizza): boolean{
+    try {
+      this.pizzaList[pizza.id] = pizza;
     localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
+      
+    } catch (error) {
+      return false;
+    }
+    
 
   }
+
+   newGuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0, v = c === 'x' ? r : ( r & 0x3 | 0x8 );
+        return v.toString(16);
+    });
+}
   constructor() { }
 }

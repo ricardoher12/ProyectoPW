@@ -12,10 +12,11 @@ import { Router } from '@angular/router';
 export class PizzaFormComponent implements OnInit {
 
   
-  model1 = new  Pizza("1", "1", "", "Redonda", "Familiar", "salfa, ancohas");
+  model1 = new  Pizza("1", "1", "", "Redonda", "Familiar", "salfa, ancohas", "Si");
   model : Pizza;
   sizes = ['Familiar', 'Grande', 'Mediana', 'Pequeña', 'Personal'];
   formas = ["Redonda", "Cuadrada", "Rectangular"];
+  orillaQueso= ["Si", "No"];
   bloquearID: boolean;
   form: FormGroup;
 constructor(private pizzaService: PizzaService, private formBuilder: FormBuilder, private router: Router){
@@ -45,11 +46,12 @@ constructor(private pizzaService: PizzaService, private formBuilder: FormBuilder
 submit(){
   if(!this.pizzaService.modificarFlag)
   {
-    this.model.id = this.form.controls["id"].value;
+  //this.model.id = this.form.controls["id"].value;
   this.model.forma = this.form.controls["forma"].value;
   this.model.nombre = this.form.controls["nombre"].value;
   this.model.size = this.form.controls["size"].value;
   this.model.ingredientes = this.form.controls["ingredientes"].value;
+  this.model.orilla = this.form.controls["orilla"].value;
     if(!this.pizzaService.crear(this.model))
     {
       alert("El id ingresado ya existe");
@@ -62,8 +64,16 @@ submit(){
     this.model.nombre = this.form.controls["nombre"].value;
     this.model.size = this.form.controls["size"].value;
     this.model.ingredientes = this.form.controls["ingredientes"].value;
-    this.pizzaService.modificar(this.model);
-    this.regresarMod();
+    this.model.orilla = this.form.controls["orilla"].value;
+    
+    if(!this.pizzaService.modificar(this.model))
+    {
+      alert("Error al modificar receta");
+    }
+    else{
+      this.regresarMod();
+    }
+    
   }
   
 }
@@ -85,13 +95,17 @@ regresar(){
         '', 
         [ Validators.required, Validators.maxLength(20) ]
       ],
-      id: [
+     /* id: [
         '',
       [Validators.required, Validators.maxLength(3), Validators.pattern("[0-9]*"), Validators.minLength(1) ] 
-      ],
+      ],*/
       ingredientes: [
         '', 
         [ Validators.required, Validators.minLength(1), Validators.maxLength(90) ]
+      ],
+      orilla:[
+        'Si',
+        Validators.required
       ],
       forma: [
         'Redonda',
@@ -103,7 +117,7 @@ regresar(){
         Validators.required
       ]
     });
-    this.model = new Pizza("", "", "", "", "", "");
+    this.model = new Pizza("", "", "", "", "", "", "");
    }
     else{
 
@@ -113,9 +127,13 @@ regresar(){
           
           [ Validators.required, Validators.maxLength(20) ], 
         ],
-        id: [
+       /* id: [
           this.model.id,
         [Validators.required, Validators.maxLength(3), Validators.pattern("[0-9]*"), Validators.minLength(1) ] 
+        ],*/
+        orilla: [
+          this.model.orilla,
+          Validators.required
         ],
         ingredientes: [
           this.model.ingredientes, 
@@ -132,7 +150,7 @@ regresar(){
         ]
       });
   
-      this.form.controls['id'].disable();
+      //this.form.controls['id'].disable();
    
     }
   }
