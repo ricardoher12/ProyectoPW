@@ -76,7 +76,7 @@ igualarPizzas(pizza: Pizza)
     try {
       this.pizzaList[pizza.id] = pizza;
     localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
-      
+      return true;
     } catch (error) {
       return false;
     }

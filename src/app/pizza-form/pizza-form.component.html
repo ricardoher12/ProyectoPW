@@ -1,8 +1,8 @@
 
-<div class="container-fluid" >
-    <div class="row ">
+
+    
   
-    <div class="title col-md-6 col-sm-12">
+    <div class="container">
    <h1>Pizza Form</h1>
   <form [formGroup]="form"> 
 
@@ -17,28 +17,33 @@
       <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
     </div>
     
-
-    <div class="form-group">
+    <div class = "row">
+    <div class="form-group col-md-4">
       <label for="size">Tamaño</label>
       <select class="form-control" id="size" name="size" formControlName="size">
         <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
       </select>
     </div>
+  </div>
 
-    <div class="form-group">
+  <div class = "row">
+    <div class="form-group col-md-4">
       <label for="orilla">Orilla de Queso</label>
       <select class="form-control" id="orilla" name="orilla" formControlName="orilla">
         <option *ngFor="let orilla of orillaQueso" [value]="orilla">{{orilla}}</option>
       </select>
     </div>
+  </div>
 
-    <div class="form-group">
+  <div class = "row">
+    <div class="form-group col-md-4">
       <label for="forma">Forma</label>
       <select class="form-control" id="forma" name="forma" formControlName="forma">
         <option *ngFor="let forma of formas" [value]="forma">{{forma}}</option>
       </select>
     </div>
-
+  </div>
+  <!--/div-->
     <div class="form-group">
         <label for="ingredientes">Receta</label>
         <input type="text" class="form-control" id="ingredientes" name="ingredientes" formControlName="ingredientes">
@@ -49,10 +54,10 @@
 
   </form>
 </div>
-<div class="title col-md-6 col-sm-12">
+<!--div class="title col-md-6 col-sm-12">
     <a class="portfolio-box">
    <img src='../../assets/pizza.jpg' class="img-responsive" alt="">
    </a>
-  </div>
-</div>
-</div>
+  </div-->
+
+
