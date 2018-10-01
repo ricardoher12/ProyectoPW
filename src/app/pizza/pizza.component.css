@@ -48,7 +48,8 @@
       background-attachment: fixed;
       background-size: cover;
       background-position: 50% 50%;
-      }
+    font-family: American Typewriter, serif;
+      } 
   
     /* Paragraph for Parallax Section */ 
   .paral p {
@@ -56,6 +57,7 @@
     color:black;
     text-align: center;
     line-height: 60px;
+    
     }
      
     /* Heading for Parallax Section */ 
