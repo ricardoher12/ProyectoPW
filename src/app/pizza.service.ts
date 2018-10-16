@@ -15,6 +15,7 @@ pizzaModel = new Pizza("", "", "", "Redonda", "Grande", "", "Si" );
 pizzaList: { [id:string] : Pizza} = {};
 flag = "";
 modificarFlag : boolean = false;
+mostrarSeparador: boolean = false;
 
 igualarPizzas(pizza: Pizza)
 {

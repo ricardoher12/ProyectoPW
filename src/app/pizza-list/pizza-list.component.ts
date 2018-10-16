@@ -93,11 +93,14 @@ getPizzas2(): void{
 
 
   openPromptModal(pizza: Pizza) {
+    var message = '¿Estas seguro de querer eliminar la pizza ';
+    message = message.concat(pizza.nombre);
+    message = message.concat(" ?");
     this.modalDialogService.openDialog(this.viewContainer, {
-      title: 'Confirmación de Eliminacion',
+      title: 'Eliminar Pizza',
       childComponent: SimpleModalComponent,
       data: {
-        text: 'Confirme si desea borra el elemento seleccionado'
+        text: message  
       },
       settings: {
         closeButtonClass: 'close theme-icon-close'
