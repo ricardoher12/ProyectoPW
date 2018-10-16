@@ -34,6 +34,9 @@ getPizzas2(): void{
    getPizzas(): void {
     this.pizzas = this.pizzaService.getPizzaList();
     this.keys = Object.keys(this.pizzas);
+    if(this.keys.length == 0){
+      document.getElementById('emptyMessage').hidden = false;
+    }
   }
 
  /* MostrarEdit(pizza: Pizza){

@@ -1,5 +1,3 @@
-
-
 <app-separator></app-separator>
 <section  class="no-padding portfolio">
 	<div class="container-fluid">
@@ -9,7 +7,15 @@
 		  <div class="title-color">RECETAS!</div>
 		</div>
   
-		<div class="title col-md-10 col-sm-12">       
+		<div class="title col-md-10 col-sm-12">    
+			<div id="emptyMessage" hidden="true">
+				<h1>
+					No tienes recetas creadas
+				</h1>
+				<h2>
+					Pasa a la sección de creación de recetas y da rienda suelta a tu imaginacion
+				</h2>
+			</div>   
 		  <div class="row no-gutter popup-gallery">
 			<!-- Iteramos por cada elemento en dogs-->
 			<div class="col-lg-4 col-sm-4" *ngFor="let index of keys"> 

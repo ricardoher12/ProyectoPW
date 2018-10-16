@@ -17,6 +17,7 @@ flag = "";
 modificarFlag : boolean = false;
 mostrarSeparador: boolean = false;
 
+
 igualarPizzas(pizza: Pizza)
 {
   this.pizzaModel = pizza;
