@@ -21,7 +21,7 @@ export class FormalModalComponent implements OnInit {
 
     private createForm() {
       this.myForm = this.formBuilder.group({
-        id: this.pizzaService.pizzaModel.id,
+        id: this.pizzaService.pizzaModel._id,
         nombre: this.pizzaService.pizzaModel.nombre,
         size: this.pizzaService.pizzaModel.size,
         forma: this.pizzaService.pizzaModel.forma,

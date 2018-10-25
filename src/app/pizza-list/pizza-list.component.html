@@ -1,5 +1,17 @@
 <app-separator></app-separator>
-<section  class="no-padding portfolio">
+<div class="container" hidden="true" id="loading">
+		<div class="ring">
+			Cargando
+			<span class="ringSpan"></span>
+		</div>
+	</div>
+<div class="alert alert-danger alert-dismissible" id="errorMessage" hidden="true">
+		<button type="button" class="close" aria-label="Close" (click)="ocultarVentana()" style="color:red">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h2 class="mensaje">{{title}}</h2>
+	</div>
+<section  class="no-padding portfolio" id="pizzaList">
 	<div class="container-fluid">
 	  <div class="row ">
 		<div class="title col-md-2 col-sm-12">

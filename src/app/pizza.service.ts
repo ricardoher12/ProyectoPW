@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs'
+import axios from "axios";
+import Axios, { AxiosInstance } from "axios";
+import { ErrorHandler } from "@angular/core";
 
 import {Pizza} from './pizza'
 import {PIZZAS} from './mock-pizzas'
-import { GlobalProvider} from './GlobalProvide';
 import {PIZZAS2} from './mock-pizzas2'
-import { isUndefined } from 'util';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,8 @@ pizzaList: { [id:string] : Pizza} = {};
 flag = "";
 modificarFlag : boolean = false;
 mostrarSeparador: boolean = false;
+url :  string = "http://localhost:3000/api/v1/pizzas";
+private axiosClient: AxiosInstance;
 
 
 igualarPizzas(pizza: Pizza)
@@ -23,7 +27,7 @@ igualarPizzas(pizza: Pizza)
   this.pizzaModel = pizza;
 }
 
-  getPizzaList(): {} {
+ /* getPizzaList(): {} {
     try {
       this.pizzaList = JSON.parse(localStorage.getItem("pizzas").toString());
       return this.pizzaList;
@@ -31,6 +35,48 @@ igualarPizzas(pizza: Pizza)
       return this.pizzaList;
     }
     
+  }*/
+
+  getPizzaList()  {
+    var pizzas = new Promise((resolve, reject) => {
+      try {
+        this.axiosClient.get(this.url, {
+          headers:{
+            'Content-Type': "application/json",
+            'Access-Control-Allow-Origin': '*'
+          }
+        })
+       .then(data =>{
+        console.log(data);
+        this.pizzaList = {};
+        data.data.forEach(element => {
+          this.pizzaList[element._id] = element;
+          
+        });
+        resolve(this.pizzaList);
+       })
+       .catch(error =>{
+        console.log(error);
+
+        if(!error.response){
+          return reject(error.message);
+        }
+
+         if(error.response.status == 404)
+         {
+          reject("No items found")
+         }else{
+          reject(error.message);
+         }
+       });
+        
+      } catch (error) {
+        reject(error.message);
+      } 
+
+    });
+      
+    return pizzas;
   }
 
   get2Pizzas(): Pizza[]
@@ -48,40 +94,116 @@ igualarPizzas(pizza: Pizza)
     //return this.global.pizza;
   }*/
 
-  crear(pizza: Pizza): boolean{
+ crear(pizza: Pizza) {
+  var result = new Promise((resolve, reject) => {
     try {
-     /*this.pizzaList = this.getPizzaList();
-      let existe = this.pizzaList[pizza.id];*/
-      //if(isUndefined(existe)){
-        pizza.id = this.newGuid();
-        this.pizzaList[pizza.id] = pizza;
-        localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
-        return true;
-      //}else{
-        //return false;
-      //}
+      pizza._id = this.newGuid();
+      this.axiosClient.post(this.url, {
+        headers:{
+          'Content-Type': "application/json",
+          'Access-Control-Allow-Origin': '*'
+        },
+        data : JSON.stringify(pizza)
+      })
+     .then(data =>{
+      console.log(data);
+      resolve("ok");
+     })
+     .catch(error =>{
+      if(!error.response){
+        return reject(error.message);
+      }
+      console.log(error);
+      var mensaje = error.response.data;
+        reject(mensaje.errorMessage);
+     });
       
     } catch (error) {
-     return false; 
-    }
+      reject(error.message);
+    } 
+
+  });
+
+  return result;
+    
   }
 
 
-  eliminar(pizza: Pizza): boolean
+  eliminar(pizza: Pizza)
   {
-   delete this.pizzaList[pizza.id];
-    localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
-    return true;
+    var result = new Promise((resolve, reject) => {
+      try {
+        let ruta = this.url + "/" + pizza._id;
+        this.axiosClient.delete(ruta, {
+          headers:{
+            'Content-Type': "application/json",
+            'Access-Control-Allow-Origin': '*'
+          },
+        })
+       .then(data =>{
+        console.log(data);
+        resolve("ok");
+       })
+       .catch(error =>{
+        if(!error.response){
+          return reject(error.message);
+        }
+         if(error.response.status == 404){
+            reject("No se pudo encontrar la pizza")
+         }
+         else{
+          console.log(error);
+          var mensaje = error.response.data;
+            reject(mensaje.errorMessage);
+         }
+        
+       });
+        
+      } catch (error) {
+        reject(error.message);
+      } 
+  
+    });
+  
+    return result;
   }
 
-  modificar(pizza: Pizza): boolean{
-    try {
-      this.pizzaList[pizza.id] = pizza;
-    localStorage.setItem("pizzas", JSON.stringify(this.pizzaList));
-      return true;
-    } catch (error) {
-      return false;
-    }
+  modificar(pizza: Pizza) {
+    var result = new Promise((resolve, reject) => {
+      try {
+        let ruta = this.url + "/" + pizza._id;
+        this.axiosClient.put(ruta, {
+          headers:{
+            'Content-Type': "application/json",
+            'Access-Control-Allow-Origin': '*'
+          },
+          data : JSON.stringify(pizza)
+        })
+       .then(data =>{
+        console.log(data);
+        resolve("ok");
+       })
+       .catch(error =>{
+        console.log(error);
+        if(!error.response){
+          return reject(error.message);
+        }
+        if(error.response.status == 404){
+          reject("No se pudo modificar la pizza");
+        }else{
+          var mensaje = error.response.data;
+          reject(mensaje.errorMessage);
+        }
+        
+       });
+        
+      } catch (error) {
+        reject(error.message);
+      } 
+  
+    });
+  
+    return result;
     
 
   }
@@ -92,5 +214,17 @@ igualarPizzas(pizza: Pizza)
         return v.toString(16);
     });
 }
-  constructor() { }
+  constructor() { 
+    this.axiosClient = axios.create({
+      timeout: 3000,
+      headers: {
+          "X-Initialized-At": Date.now().toString()
+      },
+      
+  });
+  this.axiosClient.defaults.url= this.url;
+  
+  
+ 
+  }
 }

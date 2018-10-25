@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import {Pizza} from '../pizza'
 import { PizzaService } from '../pizza.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ModalDialogService, SimpleModalComponent} from 'ngx-modal-dialog';
 
 @Component({
   selector: 'app-pizza-form',
@@ -19,10 +20,11 @@ export class PizzaFormComponent implements OnInit {
   orillaQueso= ["Si", "No"];
   bloquearID: boolean;
   form: FormGroup;
-constructor(private pizzaService: PizzaService, private formBuilder: FormBuilder, private router: Router){
+  title : string = ""
+constructor(private pizzaService: PizzaService, private formBuilder: FormBuilder, private router: Router, private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef){
   if(this.router.url.includes("modificar"))
   {
-    if(this.pizzaService.pizzaModel.id == "")
+    if(this.pizzaService.pizzaModel._id == "")
     {
       this.router.navigate([('../catalogo')]);
     }
@@ -30,6 +32,9 @@ constructor(private pizzaService: PizzaService, private formBuilder: FormBuilder
       this.model = this.pizzaService.pizzaModel;
     }
     
+  }
+  else{
+    this.pizzaService.modificarFlag = false;
   }
  
 };
@@ -52,30 +57,80 @@ submit(){
   this.model.size = this.form.controls["size"].value;
   this.model.ingredientes = this.form.controls["ingredientes"].value;
   this.model.orilla = this.form.controls["orilla"].value;
-    if(!this.pizzaService.crear(this.model))
-    {
-      alert("El id ingresado ya existe");
-    }else{
+  this.form.disable();
+  document.getElementById("form").hidden = true;
+  document.getElementById("loading").hidden = false;
+  this.pizzaService.crear(this.model)
+    .then(data => {
       this.router.navigate([('../catalogo')]);
-    }
+    })
+    .catch(error =>{
+      this.title = error;
+      document.getElementById("errorMessage").hidden = false;
+      this.form.enable();
+      document.getElementById("form").hidden = false;
+  document.getElementById("loading").hidden = true;
+    });
   }
   else{
+    document.getElementById("form").hidden = true;
+    document.getElementById("loading").hidden = false;
     this.model.forma = this.form.controls["forma"].value;
     this.model.nombre = this.form.controls["nombre"].value;
     this.model.size = this.form.controls["size"].value;
     this.model.ingredientes = this.form.controls["ingredientes"].value;
     this.model.orilla = this.form.controls["orilla"].value;
     
-    if(!this.pizzaService.modificar(this.model))
+    /*if(!this.pizzaService.modificar(this.model))
     {
       alert("Error al modificar receta");
     }
     else{
       this.regresarMod();
-    }
+    }*/
+    this.pizzaService.modificar(this.model)
+    .then(data => {
+      this.router.navigate([('../catalogo')]);
+    })
+    .catch(error =>{
+     /* this.title = error;
+      document.getElementById("errorMessage").hidden = false;*/
+      document.getElementById("form").hidden = true;
+      document.getElementById("loading").hidden = false;
+      this.form.enable();
+      this.openErrorModal(error);
+    });
     
   }
   
+}
+
+openErrorModal(message: string) {
+  this.modalDialogService.openDialog(this.viewContainer, {
+    title: 'Mensaje de Error',
+    childComponent: SimpleModalComponent,
+    data: {
+      text: message  
+    },
+    settings: {
+      closeButtonClass: 'close theme-icon-close'
+    },
+    actionButtons: [
+      {
+        text: 'Cerrar',
+        buttonClass: 'btn btn-primary',
+        onAction: () => new Promise((resolve: any) => {
+          setTimeout(() => {
+            resolve(this.router.navigate([('../catalogo')]));
+          }, 20);
+        })
+      }
+    ]
+  });
+}
+
+ocultarVentana(){
+  document.getElementById("errorMessage").hidden = true;
 }
 
 regresarMod(){

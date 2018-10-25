@@ -13,8 +13,10 @@ import { FormalModalComponent } from '../formal-modal/formal-modal.component';
   styleUrls: ['./pizza-list.component.css']
 })
 export class PizzaListComponent implements OnInit {
-  pizzas:{ [id:string] : Pizza} = {};
+  pizzas:{ } = {};
   keys : string[] = [];
+  title : string = "";
+
 
   constructor(private pizzaService: PizzaService, private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef, private router: Router, private modalService: NgbModal) 
   {
@@ -32,13 +34,42 @@ getPizzas2(): void{
 
 
    getPizzas(): void {
-    this.pizzas = this.pizzaService.getPizzaList();
-    this.keys = Object.keys(this.pizzas);
-    if(this.keys.length == 0){
+     var loading = document.getElementById("loading");
+     var lista = document.getElementById("pizzaList");
+     loading.hidden = false;
+     lista.hidden = true;
+    this.pizzaService.getPizzaList().then( data =>{
+      loading.hidden = true;
+     lista.hidden = false;
+      //this.pizzas =data;
+      this.pizzas = data;
+      this.keys = Object.keys(this.pizzas);
+    /*if(this.keys.length == 0){
       document.getElementById('emptyMessage').hidden = false;
+    }*/
     }
+
+    ).catch(error => {
+      loading.hidden = true;
+     lista.hidden = false;
+      if(error == "No items found"){
+        document.getElementById('emptyMessage').hidden = false;
+      }
+      else{
+        var message = document.getElementById('errorMessage');
+        this.title = error;
+        message.hidden = false;
+       
+      }
+      this.pizzas = {};
+     
+    });
+    
   }
 
+  ocultarVentana(){
+    document.getElementById("errorMessage").hidden = true;
+  }
  /* MostrarEdit(pizza: Pizza){
     this.global.myGlobalVar = false;
     this.global.verForm = true;
@@ -114,7 +145,15 @@ getPizzas2(): void{
           buttonClass: 'btn btn-danger',
           onAction: () => new Promise((resolve: any) => {
             setTimeout(() => {
-              resolve(this.pizzaService.eliminar(pizza), this.getPizzas());
+              resolve(this.pizzaService.eliminar(pizza).then(data =>{
+                console.log(data);
+              })
+              .catch(error => {
+                console.log(error);
+                //this.title = error;
+                //document.getElementById("errorMessage").hidden = false;
+                this.openErrorModal(error);
+              }), this.getPizzas());
             }, 20);
           })
         },
@@ -130,6 +169,31 @@ getPizzas2(): void{
       ]
     });
   }
+
+  openErrorModal(message: string) {
+    this.modalDialogService.openDialog(this.viewContainer, {
+      title: 'Mensaje de Error',
+      childComponent: SimpleModalComponent,
+      data: {
+        text: message  
+      },
+      settings: {
+        closeButtonClass: 'close theme-icon-close'
+      },
+      actionButtons: [
+        {
+          text: 'Cerrar',
+          buttonClass: 'btn btn-primary',
+          onAction: () => new Promise((resolve: any) => {
+            setTimeout(() => {
+              resolve();
+            }, 20);
+          })
+        }
+      ]
+    });
+  }
+
 
 borrarPizza(id: string){
 alert(id);

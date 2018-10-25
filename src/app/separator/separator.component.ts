@@ -9,10 +9,8 @@ import { BrowserViewportScroller } from '@angular/common/src/viewport_scroller';
   styleUrls: ['./separator.component.css']
 })
 export class SeparatorComponent implements OnInit {
- flag: boolean = true;
-  constructor(private global: GlobalProvider, private pizzaService: PizzaService) { 
-    this.flag = pizzaService.mostrarSeparador;
-    
+ 
+  constructor(private global: GlobalProvider, private pizzaService: PizzaService) {     
   }
 
   ngOnInit() {
@@ -26,8 +24,7 @@ export class SeparatorComponent implements OnInit {
     if(flag){
       this.pizzaService.mostrarSeparador = true;
     }
-    this.flag = this.pizzaService.mostrarSeparador;
-    div.hidden = this.flag;    
+    div.hidden = this.pizzaService.mostrarSeparador;   
     
   };
 }

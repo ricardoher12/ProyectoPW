@@ -17,8 +17,8 @@
   }
   
   .portfolio-box img{
-    width: 300px;
-    height: 1500px;
+    width: 350px;
+    height: 1550px;
   }
       
   .portfolio-box .portfolio-box-caption {
@@ -57,7 +57,7 @@
     color:black;
     text-align: center;
     line-height: 60px;
-    text-shadow: #fff;
+    text-shadow:0 0 10px white;
     
     }
      
@@ -68,7 +68,7 @@
     text-align: center;
     padding-top: 60px;
     line-height: 100px;
-    text-shadow: #fff;
+    text-shadow:0 0 10px white;
     }
   
   .paralsec {
