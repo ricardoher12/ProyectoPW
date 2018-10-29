@@ -14,7 +14,7 @@ export class GlobalProvider {
     ngOnInit() {
       this.myGlobalVar = true;
       this.verForm = false;
-      this.pizza = new Pizza("", "", "", "","", "");
+      this.pizza = new Pizza("", "", "", "","", "", "");
       this.flag = false;
     }
   }

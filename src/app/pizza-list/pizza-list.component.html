@@ -1,13 +1,17 @@
-
-<div *ngIf="global.myGlobalVar" class="jumbotron paral paralsec">
-	<h1 class="display-3">Pizza Maker</h1>
-	<p class="lead">Deja volar tu imaginación y crea las mejores recetas de pizzas</p>
-	<p class="lead">
-	<a class="btn btn-info btn-lg btn-md"  type="button" (click)="CrearReceta()" >Crear nueva receta</a>
-	</p>
-</div>
 <app-separator></app-separator>
-<section *ngIf="global.myGlobalVar" class="no-padding portfolio">
+<div class="container" hidden="true" id="loading">
+		<div class="ring">
+			Cargando
+			<span class="ringSpan"></span>
+		</div>
+	</div>
+<div class="alert alert-danger alert-dismissible" id="errorMessage" hidden="true">
+		<button type="button" class="close" aria-label="Close" (click)="ocultarVentana()" style="color:red">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h2 class="mensaje">{{title}}</h2>
+	</div>
+<section  class="no-padding portfolio" id="pizzaList">
 	<div class="container-fluid">
 	  <div class="row ">
 		<div class="title col-md-2 col-sm-12">
@@ -15,31 +19,43 @@
 		  <div class="title-color">RECETAS!</div>
 		</div>
   
-		<div class="title col-md-10 col-sm-12">       
+		<div class="title col-md-10 col-sm-12">    
+			<div id="emptyMessage" hidden="true">
+				<h1>
+					No tienes recetas creadas
+				</h1>
+				<h2>
+					Pasa a la sección de creación de recetas y da rienda suelta a tu imaginacion
+				</h2>
+			</div>   
 		  <div class="row no-gutter popup-gallery">
 			<!-- Iteramos por cada elemento en dogs-->
-			<div class="col-lg-4 col-sm-4" *ngFor="let pizza of pizzas"> 
+			<div class="col-lg-4 col-sm-4" *ngFor="let index of keys"> 
 			  <a class="portfolio-box">
-				<img src="{{pizza.picture}}" class="img-responsive" alt="">
+				<img src='../../assets/wallpaper.jpg' class="img-responsive" alt="pizza">
 				<div class="portfolio-box-caption">
 				  <div class="portfolio-box-caption-content">
 					<div class="title">
-					  {{pizza.id}} - {{pizza.nombre}}
+					 {{pizzas[index].nombre}}
 					</div>
 					<div class="description">
             Tamaño:
-            {{pizza.size}}
-          </div>
+            {{pizzas[index].size}}
+					</div>
+					<div class="description">
+						Tiene orilla de queso:
+						{{pizzas[index].orilla}}
+					</div>
           <div class="description">
               Forma:
-              {{pizza.forma}}
-            </div>
+              {{pizzas[index].forma}}
+						</div>
             <div class="description" >
-                {{pizza.ingredientes}}
+                {{pizzas[index].ingredientes}}
               </div>
           <div class="buttons">
-            <button mat-raised-button (click)="MostrarEdit(pizza)" type="button" class="btn btn-warning">Modificar</button>
-            <button type="button" (click)="openPromptModal(pizza)" class="btn btn-warning">Eliminar</button>
+            <button mat-raised-button (click)="Modificar(pizzas[index])" type="button" class="btn btn-outline-light mx-1">Modificar</button>
+            <button type="button" (click)="openPromptModal(pizzas[index])" class="btn btn-outline-light">Eliminar</button>
           </div>
         </div>
         </div>
@@ -50,4 +66,4 @@
 	  </div>
 	</div>
 	</section>
-	<app-pizza-form [model]="global.pizza" [flag]="global.flag"></app-pizza-form>
+	

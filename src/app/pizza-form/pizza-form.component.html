@@ -1,44 +1,77 @@
+<div class="container" hidden="true" id="loading">
+		<div class="ring">
+			Cargando
+			<span class="ringSpan"></span>
+		</div>
+	</div>
+<div class="alert alert-danger alert-dismissible" id="errorMessage" hidden="true">
+    <button type="button" class="close" aria-label="Close" (click)="ocultarVentana()" style="color:red">
+        <span aria-hidden="true">&times;</span>
+      </button>
 
-<div class="container" *ngIf="global.verForm">
-  <h1>Pizza Form</h1>
-  <form > 
+      <h2 class="mensaje">{{title}}</h2>
+  </div>
+<div class="container mt-3" id="form">
+   <h1>Pizza Form</h1>
+  <form [formGroup]="form"> 
 
-  <div class="form-group">
+  <!--div class="form-group">
       <label for="id">ID</label>
-      <input type="text" class="form-control" id="id" required [(ngModel)]="model.id" name="id"
-      #name="ngModel" [disabled]="!global.flag">
-    </div>
-
-    <div class="form-group">
-      <label for="nombre">Nombre</label>
-      <input type="text" class="form-control" id="nombre" required [(ngModel)]="model.nombre" name="nombre"
-      #name="ngModel">
+      <input type="text"  class="form-control col-sm-1" formControlName="id" name="id" type="text" >
+      
+    </div-->
+    <div class = "row">
+        <div class="form-group col-md-6">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre">
+          </div>
     </div>
     
-
-    <div class="form-group">
+    
+    <div class = "row">
+    <div class="form-group col-md-4">
       <label for="size">Tamaño</label>
-      <select class="form-control" id="size" required required [(ngModel)]="model.size" name="size"
-      #size="ngModel">
+      <select class="form-control" id="size" name="size" formControlName="size">
         <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
       </select>
     </div>
+  </div>
 
-    <div class="form-group">
+  <div class = "row">
+    <div class="form-group col-md-4">
+      <label for="orilla">Orilla de Queso</label>
+      <select class="form-control" id="orilla" name="orilla" formControlName="orilla">
+        <option *ngFor="let orilla of orillaQueso" [value]="orilla">{{orilla}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class="form-group col-md-4">
       <label for="forma">Forma</label>
-      <select class="form-control" id="forma" required required required [(ngModel)]="model.forma" name="forma"
-      #forma="ngModel">
+      <select class="form-control" id="forma" name="forma" formControlName="forma">
         <option *ngFor="let forma of formas" [value]="forma">{{forma}}</option>
       </select>
     </div>
+  </div>
+  <!--/div-->
+  <div class = "row">
+      <div class="form-group col-md-6">
+          <label for="ingredientes">Receta</label>
+          <input type="text" class="form-control" id="ingredientes" name="ingredientes" formControlName="ingredientes">
+        </div>
+  </div>
+    
 
-    <div class="form-group">
-        <label for="ingredientes">Receta</label>
-        <input type="text" class="form-control" id="ingredientes" required [(ngModel)]="model.ingredientes" name="ingredientes"
-        #name="ngModel">
-      </div>
-
-    <button type="submit" (click)="MostrarInfo()" class="btn btn-success">Submit</button>
+    <button type="submit" (click)="submit()" [disabled]="form.invalid" class="btn btn-success mx-2">Submit</button>
+    <button type="button" (click)="regresar()"  class="btn btn-danger">Cancelar</button>
 
   </form>
 </div>
+<!--div class="title col-md-6 col-sm-12">
+    <a class="portfolio-box">
+   <img src='../../assets/pizza.jpg' class="img-responsive" alt="">
+   </a>
+  </div-->
+
+

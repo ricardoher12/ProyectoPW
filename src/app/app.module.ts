@@ -11,13 +11,33 @@ import { PizzaFormComponent } from './pizza-form/pizza-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { RouterModule, Routes } from '@angular/router';
+import { PizzaComponent } from './pizza/pizza.component';
+import { FormalModalComponent } from './formal-modal/formal-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+
+
+
+const rutas: Routes = [
+{path: "home", component: PizzaComponent },
+{path: "catalogo", component: PizzaListComponent},
+{path: "modificar", component: PizzaFormComponent},
+{path: "crear", component: PizzaFormComponent},
+{ path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     SeparatorComponent,
     PizzaListComponent,
-    PizzaFormComponent
+    PizzaFormComponent,
+    PizzaComponent,
+    FormalModalComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +45,12 @@ import { RouterModule, Routes } from '@angular/router';
     UiModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalDialogModule.forRoot()
+    ModalDialogModule.forRoot(),
+    RouterModule.forRoot(rutas),
+    NgbModule.forRoot()
+  ],
+  entryComponents: [
+    FormalModalComponent
   ],
   providers: [GlobalProvider],
   bootstrap: [AppComponent]

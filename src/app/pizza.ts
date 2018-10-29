@@ -9,7 +9,7 @@ export class Pizza {
    public  nombre: string;
    public picture: string;*/
 
-   constructor(public id:string,public nombre:string, public picture:string, public forma:string, public size:string,public ingredientes: string)
+   constructor(public _id:string,public nombre:string, public picture:string, public forma:string, public size:string,public ingredientes: string, public orilla: string)
   {
 
   }
