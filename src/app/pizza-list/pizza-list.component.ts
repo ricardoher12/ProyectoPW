@@ -211,7 +211,7 @@ getPizzas2(): void{
           buttonClass: 'btn btn-primary',
           onAction: () => new Promise((resolve: any) => {
             setTimeout(() => {
-              resolve(this.getPizzas());
+              resolve(this.router.navigate([('../catalogo')]));
             }, 20);
           })
         }
