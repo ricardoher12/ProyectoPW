@@ -153,7 +153,7 @@ getPizzas2(): void{
                 //this.title = error;
                 //document.getElementById("errorMessage").hidden = false;
                 this.openErrorModal(error);
-              }), this.getPizzas());
+              }), this.openSuccessModal(pizza.nombre));
             }, 20);
           })
         },
@@ -194,6 +194,30 @@ getPizzas2(): void{
     });
   }
 
+
+  openSuccessModal(message: string) {
+    this.modalDialogService.openDialog(this.viewContainer, {
+      title: 'Eliminación exitosa',
+      childComponent: SimpleModalComponent,
+      data: {
+        text: "La pizza " + message + " se ha elimiando exitosamente"  
+      },
+      settings: {
+        closeButtonClass: 'close theme-icon-close'
+      },
+      actionButtons: [
+        {
+          text: 'Cerrar',
+          buttonClass: 'btn btn-primary',
+          onAction: () => new Promise((resolve: any) => {
+            setTimeout(() => {
+              resolve(this.getPizzas());
+            }, 20);
+          })
+        }
+      ]
+    });
+  }
 
 borrarPizza(id: string){
 alert(id);
