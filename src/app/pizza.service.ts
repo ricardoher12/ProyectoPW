@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+
 import axios from "axios";
 import Axios, { AxiosInstance } from "axios";
 import { ErrorHandler } from "@angular/core";
+
 
 import {Pizza} from './pizza'
 import {PIZZAS} from './mock-pizzas'
@@ -36,6 +38,7 @@ igualarPizzas(pizza: Pizza)
     }
     
   }*/
+
 
   getPizzaList()  {
     var pizzas = new Promise((resolve, reject) => {
@@ -77,6 +80,7 @@ igualarPizzas(pizza: Pizza)
     });
       
     return pizzas;
+
   }
 
   get2Pizzas(): Pizza[]
