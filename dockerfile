@@ -20,7 +20,7 @@ RUN npm install -g @angular/cli@
 COPY . /usr/src/app
 
 # Expose the port the app runs in
-#EXPOSE 8000
+EXPOSE 8000
 
 #Build the app
 RUN npm run build

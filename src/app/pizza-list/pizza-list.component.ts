@@ -38,6 +38,7 @@ getPizzas2(): void{
      var lista = document.getElementById("pizzaList");
      loading.hidden = false;
      lista.hidden = true;
+     this.pizzas = {};
     this.pizzaService.getPizzaList().then( data =>{
       loading.hidden = true;
      lista.hidden = false;
@@ -52,6 +53,7 @@ getPizzas2(): void{
     ).catch(error => {
       loading.hidden = true;
      lista.hidden = false;
+     this.keys = [];
       if(error == "No items found"){
         document.getElementById('emptyMessage').hidden = false;
       }
@@ -61,7 +63,6 @@ getPizzas2(): void{
         message.hidden = false;
        
       }
-      this.pizzas = {};
      
     });
     
@@ -211,7 +212,7 @@ getPizzas2(): void{
           buttonClass: 'btn btn-primary',
           onAction: () => new Promise((resolve: any) => {
             setTimeout(() => {
-              resolve(this.getPizzas());
+              resolve(this.keys= [], this.getPizzas());
             }, 20);
           })
         }
