@@ -11,6 +11,8 @@ import {PIZZAS2} from './mock-pizzas2'
 
 
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +22,7 @@ pizzaList: { [id:string] : Pizza} = {};
 flag = "";
 modificarFlag : boolean = false;
 mostrarSeparador: boolean = false;
-url :  string = "http://localhost:3000/api/v1/pizzas";
+url :  string = "http://168.62.218.119:3000/api/v1/pizzas";
 private axiosClient: AxiosInstance;
 
 

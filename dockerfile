@@ -23,7 +23,7 @@ COPY . /usr/src/app
 EXPOSE 8000
 
 #Build the app
-RUN npm run build
+RUN npm run build --prod
 
 CMD ng serve --host 0.0.0.0
 #EXPOSE 8000 49153
