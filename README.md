@@ -16,21 +16,21 @@ This applicattion is an interact site, in which you can make the CRUD operations
 
 ### General functionality:
 
--Create pizzas's recipies and connect to an api to create them in the Data Base.
--Connect to an api to get the pizzas' recipies created previously.
--Update existing recipies and connect to an api to modify them in the Data Base.
--Delete existing recipes and connect to an apli to delete them from the Data Base.
+- Create pizzas's recipies and connect to an api to create them in the Data Base.
+- Connect to an api to get the pizzas' recipies created previously.
+- Update existing recipies and connect to an api to modify them in the Data Base.
+- Delete existing recipes and connect to an apli to delete them from the Data Base.
 
 ### The general breakdown looks like this:
--Home page(URL:/home)
-	-Shows the landing page.
-	-Has a button that redirects to the create page.
--Recipes page (URL:/recetas)
-	-Shows all the existing recipes.
-	-Allows you to delete an existing recipes.
-	-Shows the update's button option and redirects you to the update page.
--Create page (URL:/crear)
+- Home page(URL:/home)
+	- Shows the landing page.
+	- Has a button that redirects to the create page.
+- Recipes page (URL:/recetas)
+	- Shows all the existing recipes.
+	- Allows you to delete an existing recipes.
+	- Shows the update's button option and redirects you to the update page.
+- Create page (URL:/crear)
 	-Allows you to create a new recipe and redirects you to the recipes page.
--Update page (URL:/modificar)
+- Update page (URL:/modificar)
 	-Allows you to modify all the recipe's properties.
 
