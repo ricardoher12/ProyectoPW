@@ -30,7 +30,7 @@ This applicattion is an interact site, in which you can make the CRUD operations
 	- Allows you to delete an existing recipes.
 	- Shows the update's button option and redirects you to the update page.
 - Create page (URL:/crear)
-	-Allows you to create a new recipe and redirects you to the recipes page.
+	- Allows you to create a new recipe and redirects you to the recipes page.
 - Update page (URL:/modificar)
-	-Allows you to modify all the recipe's properties.
+	- Allows you to modify all the recipe's properties.
 
