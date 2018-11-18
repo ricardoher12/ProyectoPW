@@ -22,7 +22,9 @@ pizzaList: { [id:string] : Pizza} = {};
 flag = "";
 modificarFlag : boolean = false;
 mostrarSeparador: boolean = false;
-url :  string = "http://localhost:3000/api/v1/pizzas";
+//express-app.westus.azurecontainer.io
+url :  string = "http://pizzaapp.westus.azurecontainer.io:3000/api/v1/pizzas";
+
 private axiosClient: AxiosInstance;
 
 
