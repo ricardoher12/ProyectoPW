@@ -2,7 +2,7 @@
 
 This codebase was created to demonstrate a fully fledged application built with Angular that interacts with an actual backend server including CRUD operations, routing, and more. 
 
-## Gettin Started
+## Getting Started
 Make sure you have the Angular CLI v6 installed globally. We use npm to manage the dependencies, so that, you have to run the npm install command to get all the dependencies.
 
 Run ng serve for a dev server. Navigate to http://localhost:8000/. The app will automatically reload if you change any of the source files.
