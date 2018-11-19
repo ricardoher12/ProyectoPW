@@ -6,10 +6,22 @@
 		</div>
 	</div>
 <div class="alert alert-danger alert-dismissible" id="errorMessage" hidden="true">
-		<button type="button" class="close" aria-label="Close" (click)="ocultarVentana()" style="color:red">
+		<button type="button" class="close" aria-label="Close" (click)="ocultarVentana(true)" style="color:red">
 				<span aria-hidden="true">&times;</span>
 			</button>
 			<h2 class="mensaje">{{title}}</h2>
+	</div>
+	<div class="alert alert-danger alert-dismissible" id="eraseMessage" hidden="true">
+		<button type="button" class="close" aria-label="Close" (click)="ocultarVentana(false)" >
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h2 class="mensaje">{{title2}}</h2>
+	</div>
+	<div class="alert alert-success" role="alert" id="successMessage" hidden="true" >
+		<button type="button" class="close" aria-label="Close" (click)="ocultarSuccess()" style="color:green" >
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<h2 class="mensaje">{{title2}}</h2>
 	</div>
 <section  class="no-padding portfolio" id="pizzaList">
 	<div class="container-fluid">

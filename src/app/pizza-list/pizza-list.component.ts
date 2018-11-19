@@ -16,6 +16,8 @@ export class PizzaListComponent implements OnInit {
   pizzas:{ } = {};
   keys : string[] = [];
   title : string = "";
+  title2 : string = "";
+  
 
 
   constructor(private pizzaService: PizzaService, private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef, private router: Router, private modalService: NgbModal) 
@@ -59,7 +61,7 @@ getPizzas2(): void{
       }
       else{
         var message = document.getElementById('errorMessage');
-        this.title = error;
+        this.title = "Error al obtener pizzas: " +error;
         message.hidden = false;
        
       }
@@ -68,8 +70,14 @@ getPizzas2(): void{
     
   }
 
-  ocultarVentana(){
-    document.getElementById("errorMessage").hidden = true;
+  ocultarVentana(flag : boolean){
+    if(flag)
+    {
+      document.getElementById("errorMessage").hidden = true;
+    }else{
+      document.getElementById("eraseMessage").hidden = true;
+    }
+    
   }
  /* MostrarEdit(pizza: Pizza){
     this.global.myGlobalVar = false;
@@ -93,6 +101,7 @@ getPizzas2(): void{
   }
   
   openEditModal(pizza: Pizza) {
+    var nombre = pizza.nombre;
     this.modalDialogService.openDialog(this.viewContainer, {
       title: 'Confirmación de Eliminacion',
       childComponent: SimpleModalComponent,
@@ -128,6 +137,7 @@ getPizzas2(): void{
 
 
   openPromptModal(pizza: Pizza) {
+    var nombre = pizza.nombre;
     var message = '¿Estas seguro de querer eliminar la pizza ';
     message = message.concat(pizza.nombre);
     message = message.concat(" ?");
@@ -148,13 +158,20 @@ getPizzas2(): void{
             setTimeout(() => {
               resolve(this.pizzaService.eliminar(pizza).then(data =>{
                 console.log(data);
+                this.title2 = "Se borro exitosmente la pizza: " + nombre;
+                this.MostrarExito(true)
+
               })
               .catch(error => {
                 console.log(error);
                 //this.title = error;
                 //document.getElementById("errorMessage").hidden = false;
-                this.openErrorModal(error);
-              }), this.openSuccessModal(pizza.nombre));
+                //this.openErrorModal(error);
+                this.title2 = "Error al borrar la pizza: " + nombre + " " + error;
+                this.MostrarExito(false)
+
+               // message.hidden = false;
+              }), this.getPizzas() );
             }, 20);
           })
         },
@@ -195,6 +212,23 @@ getPizzas2(): void{
     });
   }
 
+ocultarSuccess(){
+  var message = document.getElementById('successMessage');
+      message.hidden = true;
+}
+
+  MostrarExito(flag : boolean)
+  {
+    if(flag){
+      var message = document.getElementById('successMessage');
+      message.hidden = false;
+
+    }else{
+      var message = document.getElementById('eraseMessage');
+      message.hidden = false;
+    }
+    
+  }
 
   openSuccessModal(message: string) {
     this.modalDialogService.openDialog(this.viewContainer, {
