@@ -17,8 +17,8 @@
   }
   
   .portfolio-box img{
-    width: 350px;
-    height: 1550px;
+    width: 100%;
+    height: auto;
   }
       
   .portfolio-box .portfolio-box-caption {
